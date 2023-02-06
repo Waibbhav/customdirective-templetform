@@ -1,0 +1,16 @@
+<!-- 
+    Data binding:- sending data from html to ts or ts to html or both 
+    one way data binding :
+    1. interpolation -> {{}}
+    2. property binding -> []
+    3. event binding -> ()
+    <> two way data binding
+ -->
+
+<h1>Static : hello world</h1>
+<h1>Dynamic:{{data.toLocaleUpperCase()}}</h1>
+<h3>number:{{va}}</h3>
+<button [disabled]="result">will be enabled in 5 sec</button>
+<img [src]="img" alt="" srcset="" style="height: 20cm">
+<button (click)="display2()">click to change</button>
+

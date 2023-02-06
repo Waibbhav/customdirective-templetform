@@ -1,0 +1,39 @@
+<p>child3 works!</p>
+<div class="form">
+    <h2>Template Driven Form</h2>
+     <form id="form" #form_data="ngForm" (ngSubmit)="submitData(form_data)"> 
+      <label>First name:</label>
+      <input required type="text" minlength="3" ngModel name="Fname" #fname="ngModel"><br>
+      <span *ngIf="fname.touched">
+        <ng-container *ngIf="fname.hasError('minlength')">
+          <span class="error">wrong input</span>
+        </ng-container>
+        <ng-container *ngIf="fname.hasError('required')">
+          <span class="error">*red requifail</span>
+        </ng-container>
+      </span> <br>
+      <label >Last name:</label>
+      <input required type="text" name="Lname" ngModel #lname="ngModel" minlength="3"><br>
+      <span *ngIf="lname.touched">
+        <span *ngIf="lname.errors?.['required']">*required fail</span>
+        <Span *ngIf="lname.errors?.['minlength']">*required fail</Span>
+      </span>
+      <br>
+      <label >E-Mail</label>
+      <input type="email" id="Email" name="Email" ngModel required pattern="^[a-z0-9+]{3,25}@[a-z]{3,10}.[a-z.]{2,10}$"
+        #email="ngModel"><br><br>
+      <span *ngIf="email.touched">
+        <span *ngIf="email.errors?.['required']">*required fail</span>
+        <Span *ngIf="email.errors?.['pattern']">*email pattern error</Span>
+      </span> <br><br>
+      <label >Password</label><br>
+      <input type="password" id="password" name="password" ngModel #pass="ngModel" required minlength="5"
+        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,15}$"><br>
+      <span *ngIf="pass.touched">
+        <span *ngIf="pass.errors?.['required']">*required error</span>
+        <span *ngIf="pass.errors?.['minlength']">password must be of 5 digit</span>
+        <span *ngIf="pass.errors?.['pattern']">typo </span>
+      </span> <br> <br>
+       <input type="submit" value="Submit" [disabled]="form_data.invalid" >
+    </form> 
+  </div>

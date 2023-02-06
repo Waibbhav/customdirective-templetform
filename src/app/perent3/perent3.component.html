@@ -1,0 +1,8 @@
+<p>perent3 works!</p>
+<app-child3 (send)="submit($event)" ></app-child3>
+<h1>collected data</h1>
+<div *ngFor="let d of arr">
+  <p>{{d.fname}}</p>
+  <p>{{d.lname}}</p>
+  <p>{{d.email}}</p><hr>
+</div>

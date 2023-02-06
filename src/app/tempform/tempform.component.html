@@ -1,0 +1,77 @@
+<div class="form">
+  <h2>Template Driven Form</h2>
+  <form id="form" #form_data="ngForm" (ngSubmit)="submitData(form_data)">
+    <label for="Fname">First name:</label>
+    <input required type="text" minlength="3" ngModel name="Fname" #fname="ngModel"><br>
+    <span *ngIf="fname.touched">
+      <ng-container *ngIf="fname.hasError('minlength')">
+        <span class="error">wrong input</span>
+      </ng-container>
+      <ng-container *ngIf="fname.hasError('required')">
+        <span class="error">*red requifail</span>
+      </ng-container>
+
+      <!-- <span *ngIf="fname.errors?.['required']">*red requifail</span>  
+    <span *ngIf="fname.errors?.['minlength']"> *required fail</span> -->
+    </span> <br>
+
+    <label for="Lname">Last name:</label>
+    <input required type="text" name="Lname" ngModel #lname="ngModel" minlength="3"><br>
+    <span *ngIf="lname.touched">
+      <span *ngIf="lname.errors?.['required']">*required fail</span>
+      <Span *ngIf="lname.errors?.['minlength']">*required fail</Span>
+    </span>
+    <br>
+    <!-- <label for ="Male">Male</label>
+    <input type="radio" id="Male" name="gender" value="Male" ngModel ><br>
+    <label for ="Female">Female</label>
+    <input type="radio" id="Female" name="gender" value="Female" ngModel ><br>
+    <label for ="Others">Others</label>
+    <input type="radio" id="Others" name="gender" value="Others" ngModel ><br><br>  -->
+
+    <p>Gender</p>
+    <span *ngFor="let g of gender ">
+      <input type="radio" name="gender" value="{{g}}" ngModel (click)="dis()" required>{{g}}
+    </span>
+    <div id="p">
+      <p [hidden]="click">*mandatory</p>
+    </div>
+
+    <p>Hobby</p>
+    <span *ngFor="let h of Hobby">
+      <input type="checkbox" name="Hobby" id="hobby " (change)="changeSelect($event)" value="{{h}}" ngModel> {{h}}
+    </span><br><br>
+    <label for="Email">E-Mail</label>
+    <input type="email" id="Email" name="Email" ngModel required pattern="^[a-z0-9+]{3,25}@[a-z]{3,10}.[a-z.]{2,10}$"
+      #email="ngModel"><br><br>
+    <span *ngIf="email.touched">
+      <span *ngIf="email.errors?.['required']">*required fail</span>
+      <Span *ngIf="email.errors?.['pattern']">*email pattern error</Span>
+    </span> <br><br>
+    <label for="city">Choose a city:</label>
+    <!-- <select name="city" id="city">
+      <option value="kolkata">kolkata</option>
+      <option value="Bangaluru">Bangaluru</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Delhi">Delhi</option>
+    </select>  -->
+
+    <select name="city" id="city" required ngModel #City="ngModel">
+      <option *ngFor="let c of city" value={{c}}>{{c| titlecase}}</option>
+    </select><br>
+    <span *ngIf="City.touched">
+      <span *ngIf="City.errors?.['required']">Must Select</span>
+    </span>
+    <br><br>
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password" ngModel #pass="ngModel" required minlength="5"
+      pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,15}$"><br>
+    <span *ngIf="pass.touched">
+      <span *ngIf="pass.errors?.['required']">*required error</span>
+      <span *ngIf="pass.errors?.['minlength']">password must be of 5 digit</span>
+      <span *ngIf="pass.errors?.['pattern']">typo </span>
+    </span> <br> <br>
+
+    <input type="submit" value="Submit" [disabled]="form_data.invalid">
+  </form>
+</div>

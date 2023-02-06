@@ -1,0 +1,32 @@
+<div [ngSwitch]="color">
+    <span *ngSwitchCase="'yollow'">banana</span>
+    <span *ngSwitchCase="'orange'">orange</span>
+    <span *ngSwitchCase="'red'">apple</span>
+    <span *ngSwitchDefault>Wrng choice</span>
+
+</div>
+<div *ngFor="let d of day">
+    <ng-container *ngIf="(d==='sun');else elseblock">
+        <h4>{{d}}day is holyday</h4>
+    </ng-container>
+    <ng-template #elseblock>
+        <h4>{{d}} is working day</h4>
+    </ng-template>
+</div>
+
+<hr>
+<hr>
+<div *ngFor="let n of emp">
+    <ng-container *ngIf="(n.salary>15000);else elseblk">
+    <h5>Name: {{n.Name}} higher </h5>
+    <p>code: {{n.code}}</p>
+    <p>salary: {{n.salary}}</p>
+    <hr>
+  </ng-container>
+  <ng-template #elseblk>
+    <h5>Name: {{n.Name}} lower </h5>
+    <p>code: {{n.code}}</p>
+    <p>salary: {{n.salary}}</p>
+    <hr>
+</ng-template>
+</div>

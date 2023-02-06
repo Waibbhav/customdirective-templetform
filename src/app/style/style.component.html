@@ -1,0 +1,16 @@
+<p>style works!</p>
+<div *ngFor="let x of person" [ngStyle]="{'color':changecolor(x.code)}">
+    <p>name:{{x.Name}}</p>
+    <p>city:{{x.city}}</p>
+    <hr>
+
+</div>
+<div *ngFor="let x of person" [ngClass]="{'city1':x.city==='kolkata' }">
+    <p>name:{{x.Name}}</p>
+    <p>city:{{x.city}}</p>
+    <hr>
+
+</div>
+
+
+
